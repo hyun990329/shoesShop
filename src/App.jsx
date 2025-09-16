@@ -2,7 +2,6 @@ import "./App.css";
 import AppNavBar from "./AppNavBar";
 // assets 폴더 내의 이미지 사용법 -> import 해서 사용
 import bg_png from "./assets/images/bg.png"
-import img_2 from "./assets/images/shoes2.jpg"
 import {Container, Row, Col} from 'react-bootstrap';
 import data from "./data/data";
 import { useState } from "react";

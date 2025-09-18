@@ -12,10 +12,10 @@ function About(){
           <div className="footer">&copy; 2025 SneakerShop. All rights reserved.</div>        
       </div>
       <div className="text-center">
+        {/* Outlet 자리에 중첩라우터로 지정된 컴포넌트가 들어옵니다. */}
         <Outlet></Outlet>
       </div>
     </div> 
-  );
+  )
 }
-
 export default About;

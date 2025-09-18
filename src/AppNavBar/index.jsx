@@ -1,34 +1,37 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import './AppNavBar.css'
-// Route : 컴포넌트 이동
-// Routes : URL 에 담겨있는 정보를 획득
-// Link : 실제로 페이지를 이동, Link 위치의 컴포넌트를 뿌려줌
-import {Link, useNavigate} from "react-router-dom"
+// Route : 페이지(컴포넌트) 이동 처리
+// Routes : Route를 감싸는 용도
+// Link : 실제로 페이지를 보여주는 역할, Link위치에 컴포넌트 뿌려줌
+// userNavigate : 스크립트 영역에서 링크처리를 하는 훅
+import { Link, useNavigate } from "react-router-dom";
 
-
-function AppNavbar() {
+function AppNavBar(){
 
   const navigate = useNavigate();
 
-  return(
+  return (
     <>
-    <div className='App'>
+      <div className="App">
         <Navbar bg="dark" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand href="#home">MuJinJang</Navbar.Brand>
+            <Navbar.Brand>Muzinjang</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('detail')}}>Detail</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('cart')}}>Cart</Nav.Link>
-              <Nav.Link onClick={()=>{navigate('about')}}>About</Nav.Link>
+              <Nav.Link>Cart</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/House')}}>House</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/about')}}>About</Nav.Link>
+              <NavDropdown title="Info" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={()=>{navigate('/about/member')}}>Member</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>{navigate('/about/location')}}>Location</NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Container>
         </Navbar>
-        
       </div>
     </>
   )
 }
 
-export default AppNavbar;
+export default AppNavBar;

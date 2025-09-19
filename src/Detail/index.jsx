@@ -5,9 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import TabContent from "../TabContent";
 
 function Detail({product}){
-
-  let [detailFade, setDetailFade] = useState('')
-
+  let [detailFade, setDetailFade] = useState('');
 
   const [showAlert, setShowAlert] = useState(true)
   const [inputData, setInputData] = useState('')
@@ -17,17 +15,17 @@ function Detail({product}){
   // 탭을 눌렀을 때 선택되는 페이지값을 갖는 스테이트
   const [tabState, setTabState] = useState(0)
 
-  // 애니메이션용 effect : 처음 한 번만 실행
+  // 애니메이션 용 Effect : 처음 한번만 실행
   useEffect(()=>{
-    let timer = setTimeout(()=>{
+    let timer = setTimeout(() => {
       setDetailFade('ani_end')
-    }, 100)
-    return(()=>{
-      clearTimeout(timer)
-      setDetailFade('')
-    })
-  }, [])
-
+      }, 100);
+      return(()=>{
+        clearTimeout(timer);
+        setDetailFade('')
+      })
+    }, []
+  )
 
   // useEffect 실행 확인
   useEffect(()=>{
@@ -101,21 +99,21 @@ function Detail({product}){
         <Nav.Item>
           <Nav.Link eventKey="link-0" 
               onClick={()=>{setTabState(0)}}>
-            버튼1</Nav.Link>
+            특징</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-1" 
             onClick={()=>{setTabState(1)}}>
-            버튼2</Nav.Link>
+            사이즈</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-2" 
             onClick={()=>{setTabState(2)}}>
-            버튼3</Nav.Link>
+            배송</Nav.Link>
         </Nav.Item>
       </Nav>
       {/* 선택한 탭의 내용이 표시되는 공간 */}
-      <TabContent tabState={tabState} />
+      <TabContent tabState={tabState} id={findProduct.id} />
     </div>
   )
 }

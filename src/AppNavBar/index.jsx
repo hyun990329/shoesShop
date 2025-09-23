@@ -8,16 +8,19 @@ import './AppNavBar.css'
 import { Link, useNavigate } from "react-router-dom";
 // import {UserContext} from "../context/UserContext.jsx"
 // import { useContext } from "react";
+
 import userStore from "../store/userStore";
 
 function AppNavBar(){
   // const {loginUser} = useContext(UserContext);
   // console.log(loginUser)
 
-  // store 에서 정보 가져오기 (zustand 사용)
-  const {username, productstock} = userStore();
-  console.log(username)
-  console.log(productstock)
+  // store에서 정보 가져오기(zustand 사용)
+  const {userName, productStock, productName, changeName, addProduct} 
+          = userStore();
+
+  // console.log(productName);
+  // console.log(productStock);
 
   const navigate = useNavigate();
 
@@ -30,6 +33,7 @@ function AppNavBar(){
             <Nav className="me-auto">
               <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/cart')}}>Cart</Nav.Link>
+              <Nav.Link onClick={()=>{navigate('/recent')}}>Recent</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/about')}}>About</Nav.Link>
               <NavDropdown title="Info" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={()=>{navigate('/about/member')}}>Member</NavDropdown.Item>
@@ -37,7 +41,13 @@ function AppNavBar(){
               </NavDropdown>
             </Nav>
             <Nav className="ms-auto align-items-center">
-              <Nav.Link as="span">{`${username}님 로그인 됨.`}</Nav.Link>
+              <Nav.Link as="span" 
+                  onClick={()=>{
+                    changeName()
+                    addProduct('르무통', 5)
+                  }}  >
+                  유저변경</Nav.Link>
+              <Nav.Link as="span">{`${userName}님 로그인 됨.`}</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
